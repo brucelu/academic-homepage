@@ -205,7 +205,7 @@
     .year-pubs { border-left: 1px solid rgba(255,255,255,.18); }
     .pub {
       display: grid;
-      grid-template-columns: 1fr 74px;
+      grid-template-columns: 1fr;
       gap: 22px;
       padding: 20px 0 20px 24px;
       border-bottom: 1px solid rgba(255,255,255,.18);
@@ -214,8 +214,6 @@
     .pub:last-child { border-bottom: 0; }
     .pub-title { margin: 0 0 5px; font-family: Georgia, "Times New Roman", serif; font-size: 19px; line-height: 1.42; }
     .pub-meta { font-size: 13px; }
-    .cites { color: #d6bf8b; text-align: right; font-size: 13px; }
-    .cites b { display: block; font-family: Georgia, serif; font-size: 24px; }
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .info-card {
       padding: 28px;
@@ -263,7 +261,6 @@
       .year-heading { padding: 24px 0 8px; }
       .year-pubs { border-left: 0; }
       .pub { padding-left: 0; }
-      .cites { display: none; }
       .two-col { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
@@ -312,10 +309,10 @@
       </div>
     </header>
 
-    <div class="metrics" aria-label="Google Scholar metrics">
-      <div class="metric"><strong>507</strong><span data-zh>引用次数</span><span data-en>Citations</span></div>
-      <div class="metric"><strong>14</strong><span>h-index</span></div>
-      <div class="metric"><strong>20</strong><span>i10-index</span></div>
+    <div class="metrics" aria-label="Academic profile summary">
+      <div class="metric"><strong>44</strong><span data-zh>发表论文</span><span data-en>Publications</span></div>
+      <div class="metric"><strong>5</strong><span data-zh>研究方向</span><span data-en>Research Areas</span></div>
+      <div class="metric"><strong>9</strong><span data-zh>硕士学生</span><span data-en>Master's Students</span></div>
     </div>
 
     <section id="research">
@@ -342,8 +339,8 @@
         <div class="section-head">
           <div class="kicker">02 / PUBLICATIONS</div>
           <div>
-            <h2><span data-zh>共计发表 41 篇论文</span><span data-en>41 publications</span></h2>
-            <p class="section-note"><span data-zh>全部论文按年份归类，仅标注引用次数最高的五篇论文。数据更新于 2026 年 6 月。</span><span data-en>All publications grouped by year. Citation counts are shown only for the five most-cited papers. Updated June 2026.</span></p>
+            <h2><span data-zh>共计发表 44 篇论文</span><span data-en>44 publications</span></h2>
+            <p class="section-note"><span data-zh>全部论文按年份归类展示，不标注引用信息。数据更新于 2026 年 6 月。</span><span data-en>All publications grouped by year, without citation labels. Updated June 2026.</span></p>
           </div>
         </div>
         <div class="pub-list" id="pubList"></div>
@@ -375,12 +372,21 @@
         <div class="section-head">
           <div class="kicker">04 / AWARDS</div>
           <div>
-            <h2><span data-zh>荣誉与奖项</span><span data-en>Honors & awards</span></h2>
-            <p class="section-note"><span data-zh>学术奖励、人才计划及其他荣誉。</span><span data-en>Academic awards, fellowships, and distinctions.</span></p>
+            <h2><span data-zh>荣誉、奖项与学术服务</span><span data-en>Honors, awards & service</span></h2>
+            <p class="section-note"><span data-zh>学术奖励、人才计划、期刊服务及其他荣誉。</span><span data-en>Academic awards, fellowships, editorial service, and distinctions.</span></p>
           </div>
         </div>
         <div class="two-col" id="awardsList">
-          <div class="empty"><span data-zh>奖项信息待补充</span><span data-en>Award information to be added</span></div>
+          <article class="info-card">
+            <h3><span data-zh>副编辑</span><span data-en>Associate Editor</span></h3>
+            <p><em>Frontiers in Artificial Intelligence</em></p>
+            <span class="tag"><span data-zh>学术服务</span><span data-en>Editorial Service</span></span>
+          </article>
+          <article class="info-card">
+            <h3><span data-zh>奖项信息</span><span data-en>Awards</span></h3>
+            <p><span data-zh>待补充</span><span data-en>To be added</span></p>
+            <span class="tag"><span data-zh>荣誉</span><span data-en>Honors</span></span>
+          </article>
         </div>
       </div>
     </section>
@@ -419,47 +425,50 @@
 
   <script>
     const publications = [
-      [2026, "Modulating biodiversity through higher-order interactions and intraspecific competition in rock–paper–scissors dynamics", "C. Du, H. Wang, Y. Lu, L. Qin, J. Park", "Chaos, Solitons & Fractals 208, 118180"],
-      [2026, "Nonlinear effects of higher-order interactions on pattern formation and species persistence in cyclic ecosystems", "R. Fan, Y. Lu, L. Li, J. Park", "Europhysics Letters"],
-      [2026, "Shaping the learning signal in a combined Q-learning rule to improve structured cooperation", "C. Du, Z. Li, Y. Zhang, Y. Lu, A. Szolnoki", "Chaos, Solitons & Fractals 206, 117986"],
-      [2026, "Moderate intervention paradox in threshold-intensity regulated rock–paper–scissors competition systems", "Y. Lu, W. She, R. K. Yang, J. Jin, Y. Yang, J. Park", "Chaos, Solitons & Fractals 205, 117855"],
-      [2026, "Neutral species facilitate coexistence among cyclically competing species under birth and death processes", "Y. Lu, W. She, X. Duan, J. Park", "Chaos 36(3)"],
-      [2026, "Edge-based reputation promotes cooperation in simplicial complexes", "C. Du, F. Fang, A. de Miguel-Arribas, Y. Lu, Y. Wang, X. Pan, Y. Moreno", "Chaos, Solitons & Fractals 204, 117748"],
-      [2026, "Evolutionary vaccination dynamics under higher-order reinforcement pressure", "Y. Lu, Y. Wang, A. de Miguel Arribas, L. Shi, Y. Moreno", "New Journal of Physics"],
-      [2026, "Impacts of reinforcement learning-driven subsidy policies on evolutionary vaccination dynamics", "Y. Hou, Y. Huang, Y. Lu, L. Shi", "Chaos 36(1)"],
-      [2026, "Fitness-driven adaptive competition as a double-edged mechanism in maintaining biodiversity under cyclic competition", "H. Lv, Y. Hou, H. Dai, Y. Lu, X. Duan, L. Shi", "Chaos 36(1)"],
-      [2025, "Higher-order processes shape diverse patterns in biodiversity", "Y. Lu, R. Fan, Y. Zhang, C. Du, X. Duan, J. Park", "Physical Review E 112(6), 064319"],
-      [2025, "The impact of higher-order dynamics with intraspecific competition in replicator dynamics on species stability", "W. She, Y. Zhang, Y. Lu, H. Wu, L. Shi, J. Park", "Chaos, Solitons & Fractals 201, 117364"],
-      [2025, "Coupling static opinions with evolutionary games: Shaping cooperation in spatial social dilemmas", "L. Qin, Y. Zhang, C. Du, X. Duan, Y. Lu", "Chaos, Solitons & Fractals 199, 116763"],
-      [2025, "Influence of social peers on vaccine hesitancy under imperfect vaccination", "Y. Lu, A. de Miguel-Arribas, L. Shi", "Applied Mathematics and Computation 491, 129214"],
-      [2025, "Beyond payoff neutrality: How generalized subpopulation interactions drive cooperation in structured populations", "Y. Geng, Y. Peng, Y. Lu, C. Du", "Chaos 35(4)"],
-      [2025, "Enhancement of persistence in the rock-paper-scissors dynamics through higher-order interactions", "Y. Lu, H. Dai, H. Tan, X. Duan, L. Shi, J. Park", "Applied Mathematics and Computation 487, 129083"],
-      [2025, "Evolution of cooperation with asymmetric rewards", "Y. Geng, Y. Lu, L. Hong, L. Shi", "Applied Mathematics and Computation 487, 129075"],
-      [2025, "Analyzing the channels of information dissemination: Investigating abrupt transitions in resource investment", "Y. Wang, T. Wang, Y. Lu, X. Pan, J. Park", "Chaos 35(1)"],
-      [2024, "Prediction of social dilemmas in networked populations via graph neural networks", "H. Tan, Y. Lu, A. de Miguel-Arribas, L. Shi", "arXiv:2412.11775"],
-      [2024, "LLMs and generative agent-based models for complex systems research", "Y. Lu, A. Aleta, C. Du, L. Shi, Y. Moreno", "Physics of Life Reviews 51, 283–293", 126],
-      [2024, "The impact of dynamic reward on cooperation in the spatial public goods game", "Y. Zhang, Y. Lu, H. Jin, Y. Dong, C. Du, L. Shi", "Chaos, Solitons & Fractals 187, 115456"],
-      [2024, "Does cooperation among conspecifics facilitate the coexistence of species?", "X. Duan, J. Ye, Y. Lu, C. Du, B. Jang, J. Park", "Chaos, Solitons & Fractals 186, 115308"],
-      [2024, "Edge-based strategies enhance cooperation in intertwined dynamics of cooperation and synchronization", "Y. Dong, X. Dai, Y. Lu, H. Jin, L. Shi", "New Journal of Physics 26(7), 073033"],
-      [2024, "The effect of intraspecific cooperation in a three-species cyclic predator-prey model", "H. Dai, X. Wang, Y. Lu, Y. Hou, L. Shi", "Applied Mathematics and Computation 470, 128574"],
-      [2024, "Replicator–mutator dynamics with evolutionary public goods game-environmental feedbacks", "C. Du, Y. Lu, Y. Zhang, C. Shen, L. Shi, H. Guo", "Chaos 34(4)"],
-      [2024, "Evolution of cooperation on reinforcement-learning driven-adaptive networks", "C. Du, Y. Lu, H. Meng, J. Park", "Chaos 34(4)"],
-      [2024, "Understanding the role of neutral species by means of high-order interaction in the rock-paper-scissors dynamics", "Y. Lu, X. Wang, C. Du, Y. Wang, Y. Geng, L. Shi, J. Park", "Physical Review E 109(1), 014313"],
-      [2024, "Contagion dynamics on a compound model", "J. X. Yang, Z. P. Cao, Y. Lu", "Applied Mathematics and Computation 460, 128293"],
-      [2023, "Reinforcement learning relieves the vaccination dilemma", "Y. Lu, Y. Wang, Y. Liu, J. Chen, L. Shi, J. Park", "Chaos 33(7)"],
-      [2023, "Impact of different social attitudes on epidemic spreading in activity-driven networks", "Y. Hou, Y. Lu, Y. Dong, L. Jin, L. Shi", "Applied Mathematics and Computation 446, 127850", 26],
-      [2023, "What information sources can prevent the epidemic: Local information or kin information?", "R. Zou, X. Duan, Z. Han, Y. Lu, K. Ma", "Chaos, Solitons & Fractals 168, 113104", 21],
-      [2023, "Aspiration driven exit-option resolves social dilemmas in the network", "C. Du, K. Guo, Y. Lu, H. Jin, L. Shi", "Applied Mathematics and Computation 438, 127617"],
-      [2023, "Assessing the medical resources in COVID-19 based on evolutionary game", "K. Guo, Y. Lu, Y. Geng, J. Lu, L. Shi", "PLOS ONE 18(1), e0280067"],
-      [2022, "Effects of species vigilance on coexistence in evolutionary dynamics of spatial rock–paper–scissors game", "Y. Lu, X. Wang, M. Wu, L. Shi, J. Park", "Chaos 32(9)"],
-      [2022, "Reinforcement learning explains various conditional cooperation", "Y. Geng, Y. Liu, Y. Lu, C. Shen, L. Shi", "Applied Mathematics and Computation 427, 127182", 47],
-      [2022, "Enhancing coexistence of mobile species in the cyclic competition system by wildlife refuge", "Y. Lu, C. Shen, M. Wu, C. Du, L. Shi, J. Park", "Chaos 32(8)"],
-      [2022, "Effect of vaccine efficacy on disease transmission with age-structured", "L. Yin, Y. K. Lu, C. P. Du, L. Shi", "Chaos, Solitons & Fractals 156, 111812"],
-      [2022, "The effect of territorial awareness in a three-species cyclic predator–prey model", "X. Wang, Y. Lu, L. Shi, J. Park", "Scientific Reports 12(1), 1821"],
-      [2021, "Study of spreading phenomenon in network population considering heterogeneous property", "R. Zou, Z. Deng, Y. Lu, J. Hu, Z. Han", "Chaos, Solitons & Fractals 153, 111520"],
-      [2021, "Information exchange promotes and jeopardizes cooperation on interdependent networks", "Z. Zhu, Y. Dong, Y. Lu, L. Shi", "Physica A 569, 125772"],
-      [2019, "A character-level BiGRU-attention for phishing classification", "L. Yuan, Z. Zeng, Y. Lu, X. Ou, T. Feng", "ICICS, 746–762", 22],
-      [2019, "Impacts of conformist on vaccination campaign in complex networks", "Y. Lu, Y. Geng, W. Gan, L. Shi", "Physica A 526, 121124"]
+      [2026,"Cooperation dynamics driven by inequality-averse reward in structured populations","N Gong, Y Zhang, Y Lu, S Li, L Shi","Applied Mathematics and Computation 531, 130194, 2026"],
+      [2026,"Higher-order interactions and consensus payoff accelerate consensus formation on mixed hypergraphs","C Liu, Y Lu, Y Hou, H Wu, L Shi","Chaos, Solitons & Fractals 211, 118798, 2026"],
+      [2026,"Bots sustain cooperation in networked populations by maintaining social-norm diversity","H Tan, Y Lu, F Chen, L Shi","Europhysics Letters 155 (4), 41002, 2026"],
+      [2026,"Nonlinear effects of higher-order interactions on pattern formation and species persistence in cyclic ecosystems","R Fan, Y Lu, L Li, J Park","Europhysics Letters 155 (1), 12001, 2026"],
+      [2026,"Modulating biodiversity through higher-order interactions and intraspecific competition in rock–paper–scissors dynamics","C Du, H Wang, Y Lu, L Qin, J Park","Chaos, Solitons & Fractals 208, 118180, 2026"],
+      [2026,"Inferring game strategy from networked populations and human experimental systems","H Tan, Y Lu, A de Miguel-Arribas, L Shi","Knowledge-Based Systems, 116414, 2026"],
+      [2026,"Evolutionary vaccination dynamics under higher-order reinforcement pressure","Y Lu, Y Wang, A de Miguel-Arribas, L Shi, Y Moreno","New Journal of Physics 28 (6), 064601, 2026"],
+      [2026,"Shaping the learning signal in a combined Q-learning rule to improve structured cooperation","C Du, Z Li, Y Zhang, Y Lu, A Szolnoki","Chaos, Solitons & Fractals 206, 117986, 2026"],
+      [2026,"Moderate intervention paradox in threshold-intensity regulated rock–paper–scissors competition systems","Y Lu, W She, RK Yang, J Jin, Y Yang, J Park","Chaos, Solitons & Fractals 205, 117855, 2026"],
+      [2026,"Neutral species facilitate coexistence among cyclically competing species under birth and death processes","Y Lu, W She, X Duan, J Park","Chaos: An Interdisciplinary Journal of Nonlinear Science 36 (3), 2026"],
+      [2026,"Edge-based reputation promotes cooperation in simplicial complexes","C Du, F Fang, A de Miguel-Arribas, Y Lu, Y Wang, X Pan, Y Moreno","Chaos, Solitons & Fractals 204, 117748, 2026"],
+      [2026,"Impacts of reinforcement learning-driven subsidy policies on evolutionary vaccination dynamics","Y Hou, Y Huang, Y Lu, L Shi","Chaos: An Interdisciplinary Journal of Nonlinear Science 36 (1), 2026"],
+      [2026,"Fitness-driven adaptive competition as a double-edged mechanism in maintaining biodiversity under cyclic competition","H Lv, Y Hou, H Dai, Y Lu, X Duan, L Shi","Chaos: An Interdisciplinary Journal of Nonlinear Science 36 (1), 2026"],
+      [2025,"Higher-order processes shape diverse patterns in biodiversity","Y Lu, R Fan, Y Zhang, C Du, X Duan, J Park","Physical Review E 112 (6), 064319, 2025"],
+      [2025,"The impact of higher-order dynamics with intraspecific competition in replicator dynamics on species stability","W She, Y Zhang, Y Lu, H Wu, L Shi, J Park","Chaos, Solitons & Fractals 201, 117364, 2025"],
+      [2025,"Coupling static opinions with evolutionary games: Shaping cooperation in spatial social dilemmas","L Qin, Y Zhang, C Du, X Duan, Y Lu","Chaos, Solitons & Fractals 199, 116763, 2025"],
+      [2025,"Influence of social peers on vaccine hesitancy under imperfect vaccination","Y Lu, A de Miguel-Arribas, L Shi","Applied Mathematics and Computation 491, 129214, 2025"],
+      [2025,"Beyond payoff neutrality: How generalized subpopulation interactions drive cooperation in structured populations","Y Geng, Y Peng, Y Lu, C Du","Chaos: An Interdisciplinary Journal of Nonlinear Science 35 (4), 2025"],
+      [2025,"Enhancement of persistence in the rock-paper-scissors dynamics through higher-order interactions","Y Lu, H Dai, H Tan, X Duan, L Shi, J Park","Applied Mathematics and Computation 487, 129083, 2025"],
+      [2025,"Evolution of cooperation with asymmetric rewards","Y Geng, Y Lu, L Hong, L Shi","Applied Mathematics and Computation 487, 129075, 2025"],
+      [2025,"Analyzing the channels of information dissemination: Investigating abrupt transitions in resource investment","Y Wang, T Wang, Y Lu, X Pan, J Park","Chaos: An Interdisciplinary Journal of Nonlinear Science 35 (1), 2025"],
+      [2024,"LLMs and generative agent-based models for complex systems research","Y Lu, A Aleta, C Du, L Shi, Y Moreno","Physics of Life Reviews 51, 283-293, 2024"],
+      [2024,"The impact of dynamic reward on cooperation in the spatial public goods game","Y Zhang, Y Lu, H Jin, Y Dong, C Du, L Shi","Chaos, Solitons & Fractals 187, 115456, 2024"],
+      [2024,"Does cooperation among conspecifics facilitate the coexistence of species?","X Duan, J Ye, Y Lu, C Du, B Jang, J Park","Chaos, Solitons & Fractals 186, 115308, 2024"],
+      [2024,"Edge-based strategies enhance cooperation in intertwined dynamics of cooperation and synchronization","Y Dong, X Dai, Y Lu, H Jin, L Shi","New Journal of Physics 26 (7), 073033, 2024"],
+      [2024,"The effect of intraspecific cooperation in a three-species cyclic predator-prey model","H Dai, X Wang, Y Lu, Y Hou, L Shi","Applied Mathematics and Computation 470, 128574, 2024"],
+      [2024,"Replicator–mutator dynamics with evolutionary public goods game-environmental feedbacks","C Du, Y Lu, Y Zhang, C Shen, L Shi, H Guo","Chaos: An Interdisciplinary Journal of Nonlinear Science 34 (4), 2024"],
+      [2024,"Evolution of cooperation on reinforcement-learning driven-adaptive networks","C Du, Y Lu, H Meng, J Park","Chaos: An Interdisciplinary Journal of Nonlinear Science 34 (4), 2024"],
+      [2024,"Understanding the role of neutral species by means of high-order interaction in the rock-paper-scissors dynamics","Y Lu, X Wang, C Du, Y Wang, Y Geng, L Shi, J Park","Physical Review E 109 (1), 014313, 2024"],
+      [2024,"Contagion dynamics on a compound model","JX Yang, ZP Cao, Y Lu","Applied Mathematics and Computation 460, 128293, 2024"],
+      [2023,"Reinforcement learning relieves the vaccination dilemma","Y Lu, Y Wang, Y Liu, J Chen, L Shi, J Park","Chaos: An Interdisciplinary Journal of Nonlinear Science 33 (7), 2023"],
+      [2023,"Impact of different social attitudes on epidemic spreading in activity-driven networks","Y Hou, Y Lu, Y Dong, L Jin, L Shi","Applied Mathematics and Computation 446, 127850, 2023"],
+      [2023,"What information sources can prevent the epidemic: Local information or kin information?","R Zou, X Duan, Z Han, Y Lu, K Ma","Chaos, Solitons & Fractals 168, 113104, 2023"],
+      [2023,"Aspiration driven exit-option resolves social dilemmas in the network","C Du, K Guo, Y Lu, H Jin, L Shi","Applied Mathematics and Computation 438, 127617, 2023"],
+      [2023,"Assessing the medical resources in COVID-19 based on evolutionary game","K Guo, Y Lu, Y Geng, J Lu, L Shi","PloS one 18 (1), e0280067, 2023"],
+      [2022,"Effects of species vigilance on coexistence in evolutionary dynamics of spatial rock–paper–scissors game","Y Lu, X Wang, M Wu, L Shi, J Park","Chaos: An Interdisciplinary Journal of Nonlinear Science 32 (9), 2022"],
+      [2022,"Reinforcement learning explains various conditional cooperation","Y Geng, Y Liu, Y Lu, C Shen, L Shi","Applied Mathematics and Computation 427, 127182, 2022"],
+      [2022,"Enhancing coexistence of mobile species in the cyclic competition system by wildlife refuge","Y Lu, C Shen, M Wu, C Du, L Shi, J Park","Chaos: An Interdisciplinary Journal of Nonlinear Science 32 (8), 2022"],
+      [2022,"Effect of vaccine efficacy on disease transmission with age-structured","L Yin, YK Lu, CP Du, L Shi","Chaos, Solitons & Fractals 156, 111812, 2022"],
+      [2022,"The effect of territorial awareness in a three-species cyclic predator–prey model","X Wang, Y Lu, L Shi, J Park","Scientific Reports 12 (1), 1821, 2022"],
+      [2021,"Study of spreading phenomenon in network population considering heterogeneous property","R Zou, Z Deng, Y Lu, J Hu, Z Han","Chaos, Solitons & Fractals 153, 111520, 2021"],
+      [2021,"Information exchange promotes and jeopardizes cooperation on interdependent networks","Z Zhu, Y Dong, Y Lu, L Shi","Physica A: Statistical Mechanics and its Applications 569, 125772, 2021"],
+      [2019,"A character-level BiGRU-attention for phishing classification","L Yuan, Z Zeng, Y Lu, X Ou, T Feng","International Conference on Information and Communications Security, 746-762, 2019"],
+      [2019,"Impacts of conformist on vaccination campaign in complex networks","Y Lu, Y Geng, W Gan, L Shi","Physica A: Statistical Mechanics and its Applications 526, 121124, 2019"]
     ];
 
     const byYear = publications.reduce((groups, p) => {
@@ -478,7 +487,6 @@
                 <h3 class="pub-title">${p[1]}</h3>
                 <div class="pub-meta">${p[2]}<br>${p[3]}</div>
               </div>
-              ${p[4] ? `<div class="cites"><b>${p[4]}</b><span class="zh-cite">次引用</span><span class="en-cite" hidden>cites</span></div>` : ""}
             </article>
           `).join("")}</div>
         </div>
@@ -489,8 +497,6 @@
       const english = document.body.classList.toggle("en");
       document.documentElement.lang = english ? "en" : "zh-CN";
       button.textContent = english ? "中文" : "EN";
-      document.querySelectorAll(".zh-cite").forEach(el => el.hidden = english);
-      document.querySelectorAll(".en-cite").forEach(el => el.hidden = !english);
     });
   </script>
 </body>
