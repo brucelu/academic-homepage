@@ -200,9 +200,35 @@
     }
     .dark .section-note, .dark .pub-meta { color: #aebfb8; }
     .pub-list { border-top: 1px solid rgba(255,255,255,.18); }
-    .year-group { display: grid; grid-template-columns: 92px 1fr; border-bottom: 1px solid rgba(255,255,255,.18); }
-    .year-heading { padding: 26px 0; color: #d6bf8b; font-family: Georgia, serif; font-size: 25px; }
-    .year-pubs { border-left: 1px solid rgba(255,255,255,.18); }
+    .year-group { border-bottom: 1px solid rgba(255,255,255,.18); }
+    .year-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 24px 0;
+      color: #d6bf8b;
+      font-family: Georgia, serif;
+      font-size: 25px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .year-heading::-webkit-details-marker { display: none; }
+    .year-heading::after {
+      content: "+";
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(214,191,139,.55);
+      border-radius: 50%;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1;
+    }
+    .year-group[open] .year-heading::after { content: "-"; }
+    .year-heading small { color: #aebfb8; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .year-pubs { border-top: 1px solid rgba(255,255,255,.18); }
     .pub {
       display: grid;
       grid-template-columns: 1fr;
@@ -257,9 +283,7 @@
       .monogram { width: min(330px, 85%); }
       .section-head { grid-template-columns: 1fr; gap: 8px; }
       .research-grid { grid-template-columns: 1fr 1fr; }
-      .year-group { grid-template-columns: 1fr; }
-      .year-heading { padding: 24px 0 8px; }
-      .year-pubs { border-left: 0; }
+      .year-heading { padding: 22px 0; }
       .pub { padding-left: 0; }
       .two-col { grid-template-columns: 1fr; }
     }
@@ -310,7 +334,7 @@
     </header>
 
     <div class="metrics" aria-label="Academic profile summary">
-      <div class="metric"><strong>44</strong><span data-zh>发表论文</span><span data-en>Publications</span></div>
+      <div class="metric"><strong>8</strong><span data-zh>年度归档</span><span data-en>Year Archives</span></div>
       <div class="metric"><strong>5</strong><span data-zh>研究方向</span><span data-en>Research Areas</span></div>
       <div class="metric"><strong>9</strong><span data-zh>硕士学生</span><span data-en>Master's Students</span></div>
     </div>
@@ -320,27 +344,8 @@
         <div class="section-head">
           <div class="kicker">01 / RESEARCH</div>
           <div>
-            <h2><span data-zh>研究方向</span><span data-en>Research interests</span></h2>
-            <p class="section-note"><span data-zh>从个体学习机制出发，理解网络化群体中的合作、传播与共存。</span><span data-en>Understanding cooperation, diffusion, and coexistence in networked populations.</span></p>
-          </div>
-        </div>
-        <div class="research-grid">
-          <div class="research-item"><b>01</b><span data-zh>复杂网络</span><span data-en>Complex Networks</span></div>
-          <div class="research-item"><b>02</b><span data-zh>AI 行为科学</span><span data-en>AI Behavioral Science</span></div>
-          <div class="research-item"><b>03</b><span data-zh>演化博弈</span><span data-en>Evolutionary Games</span></div>
-          <div class="research-item"><b>04</b><span data-zh>人类行为</span><span data-en>Human Behavior</span></div>
-          <div class="research-item"><b>05</b><span data-zh>生物多样性</span><span data-en>Biodiversity</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="dark" id="publications">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="kicker">02 / PUBLICATIONS</div>
-          <div>
-            <h2><span data-zh>共计发表 44 篇论文</span><span data-en>44 publications</span></h2>
-            <p class="section-note"><span data-zh>全部论文按年份归类展示，不标注引用信息。数据更新于 2026 年 6 月。</span><span data-en>All publications grouped by year, without citation labels. Updated June 2026.</span></p>
+            <h2><span data-zh>论文</span><span data-en>Publications</span></h2>
+            <p class="section-note"><span data-zh>按 Google Scholar 当前记录更新。点击年份即可展开或收起当年论文。</span><span data-en>Updated from Google Scholar. Click a year to expand or collapse its publications.</span></p>
           </div>
         </div>
         <div class="pub-list" id="pubList"></div>
@@ -362,7 +367,26 @@
           </div>
         </div>
         <div class="two-col" id="fundingList">
-          <div class="empty"><span data-zh>基金信息待补充</span><span data-en>Funding information to be added</span></div>
+          <article class="info-card">
+            <h3>云南省基础研究青年项目</h3>
+            <p>“人机耦合系统中的信息与疾病传播建模研究”</p>
+            <span class="tag">202501AU070193</span>
+          </article>
+          <article class="info-card">
+            <h3>云南省教育厅青年人才基础研究专项</h3>
+            <p>“非对称禀赋下的人机合作行为研究”</p>
+            <span class="tag">2025J0579</span>
+          </article>
+          <article class="info-card">
+            <h3>中国商业统计协会一般项目</h3>
+            <p>“数据驱动的合作行为范式研究”</p>
+            <span class="tag">2023STY63</span>
+          </article>
+          <article class="info-card">
+            <h3>基金委博士联合培养项目</h3>
+            <p>“活动驱动网络中的疾病传播研究”</p>
+            <span class="tag">202208530105</span>
+          </article>
         </div>
       </div>
     </section>
@@ -425,6 +449,7 @@
 
   <script>
     const publications = [
+      [2027,"Exploring effects of the fixed punishment probability and Q-learning-based update on cooperation in spatial public goods games","Y Lu, N Gong, Y Zhang, C Du, J Park","Applied Mathematics and Computation 532, 130252, 2027"],
       [2026,"Cooperation dynamics driven by inequality-averse reward in structured populations","N Gong, Y Zhang, Y Lu, S Li, L Shi","Applied Mathematics and Computation 531, 130194, 2026"],
       [2026,"Higher-order interactions and consensus payoff accelerate consensus formation on mixed hypergraphs","C Liu, Y Lu, Y Hou, H Wu, L Shi","Chaos, Solitons & Fractals 211, 118798, 2026"],
       [2026,"Bots sustain cooperation in networked populations by maintaining social-norm diversity","H Tan, Y Lu, F Chen, L Shi","Europhysics Letters 155 (4), 41002, 2026"],
@@ -479,8 +504,8 @@
     document.getElementById("pubList").innerHTML = Object.keys(byYear)
       .sort((a, b) => b - a)
       .map(year => `
-        <div class="year-group">
-          <div class="year-heading">${year}</div>
+        <details class="year-group">
+          <summary class="year-heading"><span>${year}</span><small><span data-zh>点击展开</span><span data-en>Click to expand</span></small></summary>
           <div class="year-pubs">${byYear[year].map(p => `
             <article class="pub">
               <div>
@@ -489,7 +514,7 @@
               </div>
             </article>
           `).join("")}</div>
-        </div>
+        </details>
       `).join("");
 
     const button = document.getElementById("langBtn");
