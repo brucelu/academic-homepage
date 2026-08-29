@@ -278,6 +278,27 @@
       font-size: 25px;
     }
     .student-section-title span { color: var(--muted); font-size: 13px; }
+    .recruit-card {
+      margin: -8px 0 26px;
+      padding: 22px 24px;
+      border: 1px solid rgba(196, 150, 74, .5);
+      border-left: 4px solid var(--gold);
+      background: linear-gradient(135deg, rgba(255,253,248,.96), rgba(244,241,233,.72));
+      box-shadow: 0 8px 30px rgba(25,54,45,.035);
+    }
+    .recruit-card h3 {
+      margin: 0 0 8px;
+      color: var(--green);
+      font-family: Georgia, "Songti SC", serif;
+      font-size: 21px;
+    }
+    .recruit-card p {
+      margin: 0;
+      color: #44534e;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .recruit-card strong { color: var(--ink); }
     .student-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .student-group,
     .student-person {
@@ -525,6 +546,15 @@
             </p>
           </div>
         </div>
+
+
+        <aside class="recruit-card" aria-label="Team recruitment">
+          <h3><span data-zh>团队长期纳新</span><span data-en>Join the Group</span></h3>
+          <p>
+            <span data-zh>欢迎<strong>学有余力的本科生</strong>以及<strong>应用统计、统计学、概率论与数理统计</strong>方向的研究生加入团队，共同开展复杂系统、计算社会科学与智能行为等相关研究。</span>
+            <span data-en>We welcome motivated undergraduate students and graduate students in Applied Statistics, Statistics, Probability and Mathematical Statistics to join the group and conduct research in complex systems, computational social science, and intelligent behavior.</span>
+          </p>
+        </aside>
 
         <div class="student-stack">
           <!-- Alumni: collapsed by default -->
