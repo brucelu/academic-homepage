@@ -1,11 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="路亦康（Yikang Lu）的个人学术主页，研究复杂网络、AI行为科学、演化博弈与人类行为。">
-  <title>路亦康 | Yikang Lu</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="路亦康（Yikang Lu）的个人学术主页，研究复杂网络、AI行为科学、演化博弈与人类行为。" name="description"/>
+<title>路亦康 | Yikang Lu</title>
+<style>
     :root {
       --ink: #13231f;
       --muted: #65746f;
@@ -377,6 +378,60 @@
       font-weight: 850;
       letter-spacing: .06em;
     }
+    .timeline {
+      position: relative;
+      margin-top: 8px;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: #cfd6cf;
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 28px 18px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -29px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      border: 3px solid var(--paper);
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 1px var(--green);
+    }
+    .timeline-time {
+      margin-bottom: 4px;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .timeline-title {
+      margin: 0 0 4px;
+      font-family: Georgia, "Songti SC", serif;
+      font-size: 20px;
+      line-height: 1.4;
+    }
+    .timeline-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .timeline-item.current::before {
+      background: var(--gold);
+      box-shadow: 0 0 0 1px var(--gold);
+    }
     .empty {
       grid-column: 1 / -1;
       padding: 30px;
@@ -416,421 +471,501 @@
       .pub { gap: 12px; }
       .footer-inner { display: block; }
     }
-  </style>
+  
+
+    /* Main content sections: collapsible by default */
+    .section-fold {
+      width: 100%;
+    }
+    .section-summary {
+      position: relative;
+      margin-bottom: 0;
+      padding-right: 58px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+    .section-summary::-webkit-details-marker { display: none; }
+    .section-summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      top: 3px;
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--green);
+      background: rgba(255,255,255,.32);
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .section-fold[open] > .section-summary::after {
+      content: "−";
+    }
+    .section-summary:hover::after {
+      background: rgba(255,255,255,.72);
+    }
+    .section-fold-content {
+      margin-top: 38px;
+    }
+    .section-fold-hint {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--green-2);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .03em;
+    }
+    .section-fold[open] .section-fold-hint .when-closed,
+    .section-fold:not([open]) .section-fold-hint .when-open {
+      display: none;
+    }
+    @media (max-width: 820px) {
+      .section-summary {
+        padding-right: 48px;
+      }
+      .section-summary::after {
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+      }
+      .section-fold-content {
+        margin-top: 28px;
+      }
+    }
+</style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="#top">YIKANG LU</a>
-      <div class="links">
-        <a href="#research"><span data-zh>研究</span><span data-en>Research</span></a>
-        <a href="#publications"><span data-zh>论文</span><span data-en>Publications</span></a>
-        <a href="#funding"><span data-zh>基金</span><span data-en>Funding</span></a>
-        <a href="#awards"><span data-zh>奖项</span><span data-en>Awards</span></a>
-        <a href="#students"><span data-zh>学生</span><span data-en>Students</span></a>
-        <button class="lang" id="langBtn" type="button">EN</button>
-      </div>
-    </div>
-  </nav>
+<nav class="nav">
+<div class="wrap nav-inner">
+<a class="brand" href="#top">YIKANG LU</a>
+<div class="links">
+<a href="#education"><span data-zh="">履历</span><span data-en="">CV</span></a>
+<a href="#research"><span data-zh="">研究</span><span data-en="">Research</span></a>
+<a href="#publications"><span data-zh="">论文</span><span data-en="">Publications</span></a>
+<a href="#funding"><span data-zh="">基金</span><span data-en="">Funding</span></a>
+<a href="#awards"><span data-zh="">奖项</span><span data-en="">Awards</span></a>
+<a href="#students"><span data-zh="">学生</span><span data-en="">Students</span></a>
+<button class="lang" id="langBtn" type="button">EN</button>
+</div>
+</div>
+</nav>
+<main id="top">
+<header class="hero">
+<div class="wrap hero-grid">
+<div>
+<p class="eyebrow">Complex Systems · Human Behavior · AI</p>
+<h1>路亦康 <span>Yikang Lu</span></h1>
+<p class="intro">
+<span data-zh="">云南财经大学研究者。关注复杂网络、人工智能行为科学、演化博弈、人类行为与生物多样性，致力于理解复杂系统中个体决策与集体动力学的相互作用。</span>
+<span data-en="">Researcher at Yunnan University of Finance and Economics. My work explores complex networks, AI behavioral science, evolutionary games, human behavior, and biodiversity.</span>
+</p>
+<div class="actions">
+<a class="button primary" href="https://scholar.google.com.hk/citations?hl=zh-CN&amp;user=KkYGlt4AAAAJ" rel="noreferrer" target="_blank">Google Scholar ↗</a>
+<a class="button" href="#publications"><span data-zh="">查看论文</span><span data-en="">View publications</span> ↓</a>
+</div>
+</div>
+<div aria-label="YL monogram" class="monogram">YL</div>
+</div>
+</header>
+<div aria-label="Academic profile summary" class="metrics">
+<div class="metric"><strong>8</strong><span data-zh="">年度归档</span><span data-en="">Year Archives</span></div>
+<div class="metric"><strong>5</strong><span data-zh="">研究方向</span><span data-en="">Research Areas</span></div>
+<div class="metric"><strong>19</strong><span data-zh="">在校学生</span><span data-en="">Current Students</span></div>
+</div>
+<section id="education">
+<div class="wrap"><details aria-label="Collapsible section" class="section-fold"><summary class="section-head section-summary">
+<div class="kicker">01 / EDUCATION &amp; CAREER</div>
+<div>
+<h2><span data-zh="">教育与工作经历</span><span data-en="">Education &amp; Career</span></h2>
+<p class="section-note"><span data-zh="">学习、联合培养与任职经历。</span><span data-en="">Academic training, doctoral exchange, and professional appointment.</span></p>
+<span class="section-fold-hint"><span class="when-closed" data-zh="">点击展开全部内容</span><span class="when-open" data-zh="">点击收起全部内容</span><span class="when-closed" data-en="">Click to expand</span><span class="when-open" data-en="">Click to collapse</span></span></div>
+</summary><div class="section-fold-content">
 
-  <main id="top">
-    <header class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <p class="eyebrow">Complex Systems · Human Behavior · AI</p>
-          <h1>路亦康 <span>Yikang Lu</span></h1>
-          <p class="intro">
-            <span data-zh>云南财经大学研究者。关注复杂网络、人工智能行为科学、演化博弈、人类行为与生物多样性，致力于理解复杂系统中个体决策与集体动力学的相互作用。</span>
-            <span data-en>Researcher at Yunnan University of Finance and Economics. My work explores complex networks, AI behavioral science, evolutionary games, human behavior, and biodiversity.</span>
-          </p>
-          <div class="actions">
-            <a class="button primary" href="https://scholar.google.com.hk/citations?hl=zh-CN&user=KkYGlt4AAAAJ" target="_blank" rel="noreferrer">Google Scholar ↗</a>
-            <a class="button" href="#publications"><span data-zh>查看论文</span><span data-en>View publications</span> ↓</a>
-          </div>
-        </div>
-        <div class="monogram" aria-label="YL monogram">YL</div>
-      </div>
-    </header>
+<div aria-label="Education and career timeline" class="timeline">
+<article class="timeline-item">
+<div class="timeline-time">2013–2017</div>
+<h3 class="timeline-title"><span data-zh="">中北大学 · 理学院</span><span data-en="">Zhongbei University · School of Science</span></h3>
+<p class="timeline-desc"><span data-zh="">统计学专业，获学士学位。</span><span data-en="">Statistics; Bachelor's degree.</span></p>
+</article>
+<article class="timeline-item">
+<div class="timeline-time">2017–2020</div>
+<h3 class="timeline-title"><span data-zh="">云南财经大学 · 统计与数学学院</span><span data-en="">Yunnan University of Finance and Economics · School of Statistics and Mathematics</span></h3>
+<p class="timeline-desc"><span data-zh="">统计学（经济），获硕士学位。</span><span data-en="">Statistics (Economics); Master's degree.</span></p>
+</article>
+<article class="timeline-item">
+<div class="timeline-time">2020–2024</div>
+<h3 class="timeline-title"><span data-zh="">云南财经大学 · 统计与数学学院</span><span data-en="">Yunnan University of Finance and Economics · School of Statistics and Mathematics</span></h3>
+<p class="timeline-desc"><span data-zh="">统计学，获博士学位。</span><span data-en="">Statistics; Ph.D. degree.</span></p>
+</article>
+<article class="timeline-item">
+<div class="timeline-time">2022–2023</div>
+<h3 class="timeline-title"><span data-zh="">西班牙萨拉戈萨大学 · 联合培养博士</span><span data-en="">University of Zaragoza, Spain · Joint Ph.D. Training</span></h3>
+<p class="timeline-desc"><span data-zh="">参与留学基金委联合培养博士项目。</span><span data-en="">Joint doctoral training supported through the China Scholarship Council program.</span></p>
+</article>
+<article class="timeline-item current">
+<div class="timeline-time"><span data-zh="">2024–今</span><span data-en="">2024–Present</span></div>
+<h3 class="timeline-title"><span data-zh="">云南财经大学 · 统计与数学学院统计系</span><span data-en="">Yunnan University of Finance and Economics · Department of Statistics, School of Statistics and Mathematics</span></h3>
+<p class="timeline-desc"><span data-zh="">现就职于统计系。</span><span data-en="">Current academic appointment in the Department of Statistics.</span></p>
+</article>
+</div>
+</div></details></div>
+</section>
+<section id="research">
+<div class="wrap"><details aria-label="Collapsible section" class="section-fold"><summary class="section-head section-summary">
+<div class="kicker">02 / PUBLICATIONS</div>
+<div>
+<h2><span data-zh="">论文</span><span data-en="">Publications</span></h2>
+<p class="section-note"><span data-zh="">按 Google Scholar 当前记录更新。点击年份即可展开或收起当年论文。</span><span data-en="">Updated from Google Scholar. Click a year to expand or collapse its publications.</span></p>
+<span class="section-fold-hint"><span class="when-closed" data-zh="">点击展开全部内容</span><span class="when-open" data-zh="">点击收起全部内容</span><span class="when-closed" data-en="">Click to expand</span><span class="when-open" data-en="">Click to collapse</span></span></div>
+</summary><div class="section-fold-content">
 
-    <div class="metrics" aria-label="Academic profile summary">
-      <div class="metric"><strong>8</strong><span data-zh>年度归档</span><span data-en>Year Archives</span></div>
-      <div class="metric"><strong>5</strong><span data-zh>研究方向</span><span data-en>Research Areas</span></div>
-      <div class="metric"><strong>19</strong><span data-zh>在校学生</span><span data-en>Current Students</span></div>
-    </div>
-
-    <section id="research">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="kicker">01 / RESEARCH</div>
-          <div>
-            <h2><span data-zh>论文</span><span data-en>Publications</span></h2>
-            <p class="section-note"><span data-zh>按 Google Scholar 当前记录更新。点击年份即可展开或收起当年论文。</span><span data-en>Updated from Google Scholar. Click a year to expand or collapse its publications.</span></p>
-          </div>
-        </div>
-        <div class="pub-list" id="pubList"></div>
-        <div style="margin-top:28px">
-          <a class="button" style="border-color:#91aa9f;color:#fff" href="https://scholar.google.com.hk/citations?view_op=list_works&hl=zh-CN&user=KkYGlt4AAAAJ" target="_blank" rel="noreferrer">
-            <span data-zh>全部论文</span><span data-en>All publications</span> ↗
+<div class="pub-list" id="pubList"></div>
+<div style="margin-top:28px">
+<a class="button" href="https://scholar.google.com.hk/citations?view_op=list_works&amp;hl=zh-CN&amp;user=KkYGlt4AAAAJ" rel="noreferrer" style="border-color:#91aa9f;color:#fff" target="_blank">
+<span data-zh="">全部论文</span><span data-en="">All publications</span> ↗
           </a>
-        </div>
-      </div>
-    </section>
+</div>
+</div></details></div>
+</section>
+<section id="funding">
+<div class="wrap"><details aria-label="Collapsible section" class="section-fold"><summary class="section-head section-summary">
+<div class="kicker">03 / FUNDING</div>
+<div>
+<h2><span data-zh="">科研基金</span><span data-en="">Research funding</span></h2>
+<p class="section-note"><span data-zh="">主持及参与的科研项目。</span><span data-en="">Principal investigator and collaborative projects.</span></p>
+<span class="section-fold-hint"><span class="when-closed" data-zh="">点击展开全部内容</span><span class="when-open" data-zh="">点击收起全部内容</span><span class="when-closed" data-en="">Click to expand</span><span class="when-open" data-en="">Click to collapse</span></span></div>
+</summary><div class="section-fold-content">
 
-    <section id="funding">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="kicker">03 / FUNDING</div>
-          <div>
-            <h2><span data-zh>科研基金</span><span data-en>Research funding</span></h2>
-            <p class="section-note"><span data-zh>主持及参与的科研项目。</span><span data-en>Principal investigator and collaborative projects.</span></p>
-          </div>
-        </div>
-        <div class="two-col" id="fundingList">
-          <article class="info-card">
-            <h3>云南省基础研究青年项目</h3>
-            <p>“人机耦合系统中的信息与疾病传播建模研究”</p>
-            <span class="tag">202501AU070193</span>
-          </article>
-          <article class="info-card">
-            <h3>云南省教育厅青年人才基础研究专项</h3>
-            <p>“非对称禀赋下的人机合作行为研究”</p>
-            <span class="tag">2025J0579</span>
-          </article>
-          <article class="info-card">
-            <h3>中国商业统计协会一般项目</h3>
-            <p>“数据驱动的合作行为范式研究”</p>
-            <span class="tag">2023STY63</span>
-          </article>
-          <article class="info-card">
-            <h3>基金委博士联合培养项目</h3>
-            <p>“活动驱动网络中的疾病传播研究”</p>
-            <span class="tag">202208530105</span>
-          </article>
-        </div>
-      </div>
-    </section>
+<div class="two-col" id="fundingList">
+<article class="info-card">
+<h3>云南省基础研究青年项目</h3>
+<p>“人机耦合系统中的信息与疾病传播建模研究”</p>
+<span class="tag">202501AU070193</span>
+</article>
+<article class="info-card">
+<h3>云南省教育厅青年人才基础研究专项</h3>
+<p>“非对称禀赋下的人机合作行为研究”</p>
+<span class="tag">2025J0579</span>
+</article>
+<article class="info-card">
+<h3>中国商业统计协会一般项目</h3>
+<p>“数据驱动的合作行为范式研究”</p>
+<span class="tag">2023STY63</span>
+</article>
+<article class="info-card">
+<h3>基金委博士联合培养项目</h3>
+<p>“活动驱动网络中的疾病传播研究”</p>
+<span class="tag">202208530105</span>
+</article>
+</div>
+</div></details></div>
+</section>
+<section id="awards" style="background:#e9ebe4">
+<div class="wrap"><details aria-label="Collapsible section" class="section-fold"><summary class="section-head section-summary">
+<div class="kicker">04 / AWARDS</div>
+<div>
+<h2><span data-zh="">荣誉、奖项与学术服务</span><span data-en="">Honors, awards &amp; service</span></h2>
+<p class="section-note"><span data-zh="">学术奖励、人才计划、期刊服务及其他荣誉。</span><span data-en="">Academic awards, fellowships, editorial service, and distinctions.</span></p>
+<span class="section-fold-hint"><span class="when-closed" data-zh="">点击展开全部内容</span><span class="when-open" data-zh="">点击收起全部内容</span><span class="when-closed" data-en="">Click to expand</span><span class="when-open" data-en="">Click to collapse</span></span></div>
+</summary><div class="section-fold-content">
 
-    <section id="awards" style="background:#e9ebe4">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="kicker">04 / AWARDS</div>
-          <div>
-            <h2><span data-zh>荣誉、奖项与学术服务</span><span data-en>Honors, awards & service</span></h2>
-            <p class="section-note"><span data-zh>学术奖励、人才计划、期刊服务及其他荣誉。</span><span data-en>Academic awards, fellowships, editorial service, and distinctions.</span></p>
-          </div>
-        </div>
-        <div class="two-col" id="awardsList">
-          <article class="info-card">
-            <h3><span data-zh>副编辑</span><span data-en>Associate Editor</span></h3>
-            <p><em>Frontiers in Artificial Intelligence</em></p>
-            <span class="tag"><span data-zh>学术服务</span><span data-en>Editorial Service</span></span>
-          </article>
-          <article class="info-card">
-            <h3><span data-zh>奖项信息</span><span data-en>Awards</span></h3>
-            <p><span data-zh>待补充</span><span data-en>To be added</span></p>
-            <span class="tag"><span data-zh>荣誉</span><span data-en>Honors</span></span>
-          </article>
-        </div>
-      </div>
-    </section>
+<div class="two-col" id="awardsList">
+<article class="info-card">
+<h3><span data-zh="">副编辑</span><span data-en="">Associate Editor</span></h3>
+<p><em>Frontiers in Artificial Intelligence</em></p>
+<span class="tag"><span data-zh="">学术服务</span><span data-en="">Editorial Service</span></span>
+</article>
+<article class="info-card">
+<h3><span data-zh="">奖项信息</span><span data-en="">Awards</span></h3>
+<p><span data-zh="">待补充</span><span data-en="">To be added</span></p>
+<span class="tag"><span data-zh="">荣誉</span><span data-en="">Honors</span></span>
+</article>
+</div>
+</div></details></div>
+</section>
+<section id="students">
+<div class="wrap"><details aria-label="Collapsible section" class="section-fold"><summary class="section-head section-summary">
+<div class="kicker">05 / STUDENTS</div>
+<div>
+<h2><span data-zh="">学生与团队</span><span data-en="">Students &amp; group</span></h2>
+<p class="section-note">
+<span data-zh="">在校学生默认显示姓名，点击姓名可查看论文、基金与奖励；毕业生去向点击“毕业情况”后查看。</span>
+<span data-en="">Current students are listed by name. Expand each profile for publications, grants and awards; expand Alumni for graduate destinations.</span>
+</p>
+<span class="section-fold-hint"><span class="when-closed" data-zh="">点击展开全部内容</span><span class="when-open" data-zh="">点击收起全部内容</span><span class="when-closed" data-en="">Click to expand</span><span class="when-open" data-en="">Click to collapse</span></span></div>
+</summary><div class="section-fold-content">
 
-    <section id="students">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="kicker">05 / STUDENTS</div>
-          <div>
-            <h2><span data-zh>学生与团队</span><span data-en>Students & group</span></h2>
-            <p class="section-note">
-              <span data-zh>在校学生默认显示姓名，点击姓名可查看论文、基金与奖励；毕业生去向点击“毕业情况”后查看。</span>
-              <span data-en>Current students are listed by name. Expand each profile for publications, grants and awards; expand Alumni for graduate destinations.</span>
-            </p>
-          </div>
-        </div>
-
-
-        <aside class="recruit-card" aria-label="Team recruitment">
-          <h3><span data-zh>团队长期纳新</span><span data-en>Join the Group</span></h3>
-          <p>
-            <span data-zh>欢迎<strong>学有余力的本科生</strong>以及<strong>应用统计、统计学、概率论与数理统计</strong>方向的研究生加入团队，共同开展复杂系统、计算社会科学与智能行为等相关研究。</span>
-            <span data-en>We welcome motivated undergraduate students and graduate students in Applied Statistics, Statistics, Probability and Mathematical Statistics to join the group and conduct research in complex systems, computational social science, and intelligent behavior.</span>
-          </p>
-        </aside>
-
-        <div class="student-stack">
-          <!-- Alumni: collapsed by default -->
-          <details class="student-group">
-            <summary><span data-zh>毕业情况</span><span data-en>Alumni</span></summary>
-            <div class="student-body">
-              <div class="student-body-inner alumni-list">
-                <div class="alumni-item"><strong>吕黄铭</strong><span>21级硕士 · 东北财经大学在读博士</span></div>
-                <div class="alumni-item"><strong>尹路</strong><span>22级硕士 · 华东师范大学在读博士</span></div>
-                <div class="alumni-item"><strong>侯运祥</strong><span>23级硕士 · 东北财经大学在读博士</span></div>
-                <div class="alumni-item"><strong>陈洁</strong><span>23级硕士 · 安徽省税务厅</span></div>
-                <div class="alumni-item"><strong>吴梦洁</strong><span>23级硕士 · 云南烟草</span></div>
-                <div class="alumni-item"><strong>张朝雅</strong><span>24级硕士 · 重庆建设银行</span></div>
-                <div class="alumni-item"><strong>黄咏欣</strong><span>25级硕士 · 海天考研</span></div>
-                <div class="alumni-item"><strong>刘丽丽</strong><span>26级硕士 · 红河学院</span></div>
-              </div>
-            </div>
-          </details>
-
-          <!-- Current doctoral students -->
-          <div>
-            <div class="student-section-title">
-              <h3><span data-zh>在校博士生</span><span data-en>Current PhD Students</span></h3>
-              <span><span data-zh>点击姓名展开</span><span data-en>Expand a name for details</span></span>
-            </div>
-            <div class="student-grid">
-              <details class="student-person">
-                <summary>
-                  <span class="student-summary-main"><span class="student-name">张亚丽</span><span class="student-role"><span data-zh>博士生</span><span data-en>PhD Student</span></span></span>
-                </summary>
-                <div class="student-body"><div class="student-body-inner">
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>论文</span><span data-en>Publications</span></span>
-                    <p class="student-pub">Qin L, <strong>Zhang Y</strong>, Du C, et al. Coupling static opinions with evolutionary games: Shaping cooperation in spatial social dilemmas[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2025, 199: 116763.</p>
-                    <p class="student-pub"><strong>Zhang Y</strong>, Lu Y, Jin H, et al. The impact of dynamic reward on cooperation in the spatial public goods game[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2024, 187: 115456.</p>
-                  </div>
-                </div></div>
-              </details>
-
-              <details class="student-person">
-                <summary>
-                  <span class="student-summary-main"><span class="student-name">佘文浩</span><span class="student-role"><span data-zh>博士生</span><span data-en>PhD Student</span></span></span>
-                </summary>
-                <div class="student-body"><div class="student-body-inner">
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>论文</span><span data-en>Publications</span></span>
-                    <p class="student-pub"><strong>She W</strong>, <strong>Zhang Y</strong>, Lu Y, et al. The impact of higher-order dynamics with intraspecific competition in replicator dynamics on species stability[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2025, 201: 117364.</p>
-                    <p class="student-pub">Lu Y, <strong>She W</strong>, Yang R K, et al. Moderate intervention paradox in threshold-intensity regulated rock–paper–scissors competition systems[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2026, 205: 117855.</p>
-                    <p class="student-pub">Lu Y, <strong>She W</strong>, Duan X, et al. Neutral species facilitate coexistence among cyclically competing species under birth and death processes[J]. <em>Chaos: An Interdisciplinary Journal of Nonlinear Science</em>, 2026, 36(3).</p>
-                  </div>
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>基金</span><span data-en>Grant</span></span>
-                    <p class="student-item">云南省教育厅科技研究项目《基于大语言模型的财富可见性非对称情景下的合作演化研究》（项目编号：2025Y0804）。</p>
-                  </div>
-                </div></div>
-              </details>
-
-              <details class="student-person">
-                <summary>
-                  <span class="student-summary-main"><span class="student-name">王颖</span><span class="student-role"><span data-zh>博士生</span><span data-en>PhD Student</span></span></span>
-                </summary>
-                <div class="student-body"><div class="student-body-inner">
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>论文</span><span data-en>Publications</span></span>
-                    <p class="student-pub">Lu Y, <strong>Wang Y</strong>, de Miguel-Arribas A, et al. Evolutionary vaccination dynamics under higher-order reinforcement pressure[J]. <em>New Journal of Physics</em>, 2026, 28(6): 064601.</p>
-                  </div>
-                </div></div>
-              </details>
-            </div>
-          </div>
-
-          <!-- Current master's students -->
-          <div>
-            <div class="student-section-title">
-              <h3><span data-zh>在校硕士生</span><span data-en>Current Master's Students</span></h3>
-              <span><span data-zh>点击姓名展开</span><span data-en>Expand a name for details</span></span>
-            </div>
-            <div class="student-grid">
-              <div class="cohort-label"><span data-zh>在校硕士</span><span data-en>Current Master's Students</span></div>
-
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">龚娜</span><span class="student-role"><span data-zh>硕士生</span><span data-en>Master's Student</span></span></span></summary>
-                <div class="student-body"><div class="student-body-inner">
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>论文</span><span data-en>Publications</span></span>
-                    <p class="student-pub">Lu Y, <strong>Gong N</strong>, <strong>Zhang Y</strong>, et al. Exploring effects of the fixed punishment probability and Q-learning-based update on cooperation in spatial public goods games[J]. <em>Applied Mathematics and Computation</em>, 2027, 532: 130252.</p>
-                    <p class="student-pub"><strong>Gong N</strong>, <strong>Zhang Y</strong>, Lu Y, et al. Cooperation dynamics driven by inequality-averse reward in structured populations[J]. <em>Applied Mathematics and Computation</em>, 2026, 531: 130194.</p>
-                  </div>
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>基金</span><span data-en>Grant</span></span>
-                    <p class="student-item">云南省教育厅科技研究项目《基于大语言模型的气候风险博弈实验研究》（项目编号：2025Y0806）。</p>
-                  </div>
-                </div></div>
-              </details>
-
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">凡荣</span><span class="student-role"><span data-zh>硕士生</span><span data-en>Master's Student</span></span></span></summary>
-                <div class="student-body"><div class="student-body-inner">
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>论文</span><span data-en>Publications</span></span>
-                    <p class="student-pub">Lu Y, <strong>Fan R</strong>, <strong>Li L</strong>, et al. Higher-order suppression of intraspecific competition reshapes biodiversity in spatial rock–paper–scissors dynamics[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2026, 212: 118974.</p>
-                    <p class="student-pub"><strong>Fan R</strong>, Lu Y, <strong>Li L</strong>, et al. Nonlinear effects of higher-order interactions on pattern formation and species persistence in cyclic ecosystems[J]. <em>Europhysics Letters</em>, 2026, 155(1): 12001.</p>
-                    <p class="student-pub">Lu Y, <strong>Fan R</strong>, <strong>Zhang Y</strong>, et al. Higher-order processes shape diverse patterns in biodiversity[J]. <em>Physical Review E</em>, 2025, 112(6): 064319.</p>
-                  </div>
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>基金</span><span data-en>Grant</span></span>
-                    <p class="student-item">云南财经大学研究生创新基金项目《实验与田野融合视角下的大语言模型合作行为研究》（项目编号：2026YUFEYC139）。</p>
-                  </div>
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>奖励</span><span data-en>Awards</span></span>
-                    <p class="student-item">2024年中国研究生数学建模竞赛国家级三等奖；</p>
-                    <p class="student-item">2025年正大杯第十五届市场调查与分析大赛省级二等奖；</p>
-                    <p class="student-item">2025年全国大学生数学建模大赛省级二等奖；</p>
-                    <p class="student-item">2025年第八届全国应用统计专业学位研究生案例大赛国家级二等奖；</p>
-                    <p class="student-item">2026年正大杯第十六届市场调查与分析大赛省级一等奖。</p>
-                  </div>
-                </div></div>
-              </details>
-
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">徐兵</span><span class="student-role"><span data-zh>硕士生</span><span data-en>Master's Student</span></span></span></summary>
-                <div class="student-body"><div class="student-body-inner">
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>论文</span><span data-en>Publication</span></span>
-                    <p class="student-pub"><strong>Xu B</strong>, Lu Y, Yang J, et al. Coevolutionary vaccination dynamics driven by committed influencers on complex networks[J]. <em>Chaos: An Interdisciplinary Journal of Nonlinear Science</em>, 2026, 36(8).</p>
-                  </div>
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>奖励</span><span data-en>Awards</span></span>
-                    <p class="student-item">2025年第二届大学生数据要素素质大赛云南赛区三等奖；</p>
-                    <p class="student-item">2025年第八届全国应用统计专业学位研究生案例大赛省级三等奖；</p>
-                    <p class="student-item">2026年正大杯第十六届市场调查与分析大赛省级二等奖。</p>
-                  </div>
-                </div></div>
-              </details>
-
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">杨西胜</span><span class="student-role"><span data-zh>硕士生</span><span data-en>Master's Student</span></span></span></summary>
-                <div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh>论文、基金与奖励信息待补充。</span><span data-en>Publications, grants and awards to be added.</span></p></div></div>
-              </details>
-
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">陈思洁</span><span class="student-role"><span data-zh>硕士生</span><span data-en>Master's Student</span></span></span></summary>
-                <div class="student-body"><div class="student-body-inner">
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>基金</span><span data-en>Grant</span></span>
-                    <p class="student-item">云南财经大学研究生创新基金项目《基于差异化触发机制的高阶网络双病毒传播建模与分析》（项目编号：2026YUFEYC131）。</p>
-                  </div>
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>奖励</span><span data-en>Awards</span></span>
-                    <p class="student-item">2024年华为杯第二十一届数学建模竞赛国家级三等奖；</p>
-                    <p class="student-item">2025年正大杯第十五届市场调查与分析大赛云南财经大学校级三等奖；</p>
-                    <p class="student-item">2025年第八届全国应用统计专业学位研究生案例大赛省级三等奖；</p>
-                    <p class="student-item">2025年第十一届统计建模大赛省级三等奖。</p>
-                  </div>
-                </div></div>
-              </details>
-
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">陈宇昂</span><span class="student-role"><span data-zh>硕士生</span><span data-en>Master's Student</span></span></span></summary>
-                <div class="student-body"><div class="student-body-inner">
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>奖励</span><span data-en>Awards</span></span>
-                    <p class="student-item">2025年正大杯第十五届市场调查与分析大赛省级三等奖；</p>
-                    <p class="student-item">2025年挑战杯大学生课外学术科技作品竞赛云南财经大学校级三等奖；</p>
-                    <p class="student-item">2025年工行杯全国大学生金融科技创新大赛省级三等奖；</p>
-                    <p class="student-item">2026年正大杯第十六届市场调查与分析大赛省级三等奖。</p>
-                  </div>
-                </div></div>
-              </details>
-
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">刘崇睿</span><span class="student-role"><span data-zh>硕士生</span><span data-en>Master's Student</span></span></span></summary>
-                <div class="student-body"><div class="student-body-inner">
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>论文</span><span data-en>Publication</span></span>
-                    <p class="student-pub"><strong>Liu C</strong>, Lu Y, <strong>Hou Y</strong>, et al. Higher-order interactions and consensus payoff accelerate consensus formation on mixed hypergraphs[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2026, 211: 118798.</p>
-                  </div>
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>基金</span><span data-en>Grant</span></span>
-                    <p class="student-item">云南财经大学研究生创新基金项目《高阶交互下社会共识的演化动力学研究》（项目编号：2026YUFEYC133）。</p>
-                  </div>
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>奖励</span><span data-en>Award</span></span>
-                    <p class="student-item">2026年正大杯第十六届市场调查与分析大赛云南财经大学校级奖项。</p>
-                  </div>
-                </div></div>
-              </details>
-
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">李凌泽</span><span class="student-role"><span data-zh>硕士生</span><span data-en>Master's Student</span></span></span></summary>
-                <div class="student-body"><div class="student-body-inner">
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>奖励</span><span data-en>Awards</span></span>
-                    <p class="student-item">2024年中国研究生数学建模竞赛国家级三等奖；</p>
-                    <p class="student-item">2025年第八届全国应用统计专业学位研究生案例大赛国家级二等奖。</p>
-                  </div>
-                </div></div>
-              </details>
-
-              <div class="cohort-label">25级硕士</div>
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">李锦瑜</span><span class="student-role">25级硕士</span></span></summary>
-                <div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh>论文、基金与奖励信息待补充。</span><span data-en>Publications, grants and awards to be added.</span></p></div></div>
-              </details>
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">许宇鹏</span><span class="student-role">25级硕士</span></span></summary>
-                <div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh>论文、基金与奖励信息待补充。</span><span data-en>Publications, grants and awards to be added.</span></p></div></div>
-              </details>
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">胡兴巧</span><span class="student-role">25级硕士</span></span></summary>
-                <div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh>论文、基金与奖励信息待补充。</span><span data-en>Publications, grants and awards to be added.</span></p></div></div>
-              </details>
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">蒋嘉仪</span><span class="student-role">25级硕士</span></span></summary>
-                <div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh>论文、基金与奖励信息待补充。</span><span data-en>Publications, grants and awards to be added.</span></p></div></div>
-              </details>
-
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">李帅帅</span><span class="student-role">25级硕士</span></span></summary>
-                <div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh>论文、基金与奖励信息待补充。</span><span data-en>Publications, grants and awards to be added.</span></p></div></div>
-              </details>
-
-              <div class="cohort-label">26级硕士</div>
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">刘光强</span><span class="student-role">26级硕士</span></span></summary>
-                <div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh>论文、基金与奖励信息待补充。</span><span data-en>Publications, grants and awards to be added.</span></p></div></div>
-              </details>
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">武艳</span><span class="student-role">26级硕士</span></span></summary>
-                <div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh>论文、基金与奖励信息待补充。</span><span data-en>Publications, grants and awards to be added.</span></p></div></div>
-              </details>
-            </div>
-          </div>
-
-          <!-- Undergraduate students -->
-          <div>
-            <div class="student-section-title">
-              <h3><span data-zh>本科生</span><span data-en>Undergraduate Students</span></h3>
-              <span><span data-zh>点击姓名展开</span><span data-en>Expand a name for details</span></span>
-            </div>
-            <div class="student-grid">
-              <div class="cohort-label"><span data-zh>24级统计</span><span data-en>Statistics, Class of 2024</span></div>
-              <details class="student-person">
-                <summary><span class="student-summary-main"><span class="student-name">王怡敏</span><span class="student-role"><span data-zh>24级统计</span><span data-en>Undergraduate · Statistics</span></span></span></summary>
-                <div class="student-body"><div class="student-body-inner">
-                  <div class="student-block">
-                    <span class="student-label"><span data-zh>大创项目</span><span data-en>Innovation Training Project</span></span>
-                    <p class="student-item"><strong>2026年批次</strong></p>
-                    <p class="student-item">项目名称：认知偏好异质性对合作行为的影响研究</p>
-                    <p class="student-item">项目编号（省级项目编号）：S202610689018</p>
-                    <p class="student-item">项目类型：创新训练项目</p>
-                    <p class="student-item">项目级别：省级</p>
-                    <p class="student-item">项目期限：两年期（2026-05 至 2028-05）</p>
-                  </div>
-                  <div class="student-block">
-                    <span class="student-label">SRTP <span data-zh>项目</span><span data-en>Project</span></span>
-                    <p class="student-item">项目名称：观点驱动的合作演化研究</p>
-                    <p class="student-item">项目期限：2025-12 至 2026-12</p>
-                  </div>
-                </div></div>
-              </details>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap footer-inner">
-      <span>© 2026 Yikang Lu</span>
-      <span>Yunnan University of Finance and Economics · Kunming, China</span>
-    </div>
-  </footer>
-
-  <script>
+<aside aria-label="Team recruitment" class="recruit-card">
+<h3><span data-zh="">团队长期纳新</span><span data-en="">Join the Group</span></h3>
+<p>
+<span data-zh="">欢迎<strong>学有余力的本科生</strong>以及<strong>应用统计、统计学、概率论与数理统计</strong>方向的研究生加入团队，共同开展复杂系统、计算社会科学与智能行为等相关研究。</span>
+<span data-en="">We welcome motivated undergraduate students and graduate students in Applied Statistics, Statistics, Probability and Mathematical Statistics to join the group and conduct research in complex systems, computational social science, and intelligent behavior.</span>
+</p>
+</aside>
+<div class="student-stack">
+<!-- Alumni: collapsed by default -->
+<details class="student-group">
+<summary><span data-zh="">毕业情况</span><span data-en="">Alumni</span></summary>
+<div class="student-body">
+<div class="student-body-inner alumni-list">
+<div class="alumni-item"><strong>吕黄铭</strong><span>21级硕士 · 东北财经大学在读博士</span></div>
+<div class="alumni-item"><strong>尹路</strong><span>22级硕士 · 华东师范大学在读博士</span></div>
+<div class="alumni-item"><strong>侯运祥</strong><span>23级硕士 · 东北财经大学在读博士</span></div>
+<div class="alumni-item"><strong>陈洁</strong><span>23级硕士 · 安徽省税务厅</span></div>
+<div class="alumni-item"><strong>吴梦洁</strong><span>23级硕士 · 云南烟草</span></div>
+<div class="alumni-item"><strong>张朝雅</strong><span>24级硕士 · 重庆建设银行</span></div>
+<div class="alumni-item"><strong>黄咏欣</strong><span>25级硕士 · 海天考研</span></div>
+<div class="alumni-item"><strong>刘丽丽</strong><span>26级硕士 · 红河学院</span></div>
+</div>
+</div>
+</details>
+<!-- Current doctoral students -->
+<div>
+<div class="student-section-title">
+<h3><span data-zh="">在校博士生</span><span data-en="">Current PhD Students</span></h3>
+<span><span data-zh="">点击姓名展开</span><span data-en="">Expand a name for details</span></span>
+</div>
+<div class="student-grid">
+<details class="student-person">
+<summary>
+<span class="student-summary-main"><span class="student-name">张亚丽</span><span class="student-role"><span data-zh="">博士生</span><span data-en="">PhD Student</span></span></span>
+</summary>
+<div class="student-body"><div class="student-body-inner">
+<div class="student-block">
+<span class="student-label"><span data-zh="">论文</span><span data-en="">Publications</span></span>
+<p class="student-pub">Qin L, <strong>Zhang Y</strong>, Du C, et al. Coupling static opinions with evolutionary games: Shaping cooperation in spatial social dilemmas[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2025, 199: 116763.</p>
+<p class="student-pub"><strong>Zhang Y</strong>, Lu Y, Jin H, et al. The impact of dynamic reward on cooperation in the spatial public goods game[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2024, 187: 115456.</p>
+</div>
+</div></div>
+</details>
+<details class="student-person">
+<summary>
+<span class="student-summary-main"><span class="student-name">佘文浩</span><span class="student-role"><span data-zh="">博士生</span><span data-en="">PhD Student</span></span></span>
+</summary>
+<div class="student-body"><div class="student-body-inner">
+<div class="student-block">
+<span class="student-label"><span data-zh="">论文</span><span data-en="">Publications</span></span>
+<p class="student-pub"><strong>She W</strong>, <strong>Zhang Y</strong>, Lu Y, et al. The impact of higher-order dynamics with intraspecific competition in replicator dynamics on species stability[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2025, 201: 117364.</p>
+<p class="student-pub">Lu Y, <strong>She W</strong>, Yang R K, et al. Moderate intervention paradox in threshold-intensity regulated rock–paper–scissors competition systems[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2026, 205: 117855.</p>
+<p class="student-pub">Lu Y, <strong>She W</strong>, Duan X, et al. Neutral species facilitate coexistence among cyclically competing species under birth and death processes[J]. <em>Chaos: An Interdisciplinary Journal of Nonlinear Science</em>, 2026, 36(3).</p>
+</div>
+<div class="student-block">
+<span class="student-label"><span data-zh="">基金</span><span data-en="">Grant</span></span>
+<p class="student-item">云南省教育厅科技研究项目《基于大语言模型的财富可见性非对称情景下的合作演化研究》（项目编号：2025Y0804）。</p>
+</div>
+</div></div>
+</details>
+<details class="student-person">
+<summary>
+<span class="student-summary-main"><span class="student-name">王颖</span><span class="student-role"><span data-zh="">博士生</span><span data-en="">PhD Student</span></span></span>
+</summary>
+<div class="student-body"><div class="student-body-inner">
+<div class="student-block">
+<span class="student-label"><span data-zh="">论文</span><span data-en="">Publications</span></span>
+<p class="student-pub">Lu Y, <strong>Wang Y</strong>, de Miguel-Arribas A, et al. Evolutionary vaccination dynamics under higher-order reinforcement pressure[J]. <em>New Journal of Physics</em>, 2026, 28(6): 064601.</p>
+</div>
+</div></div>
+</details>
+</div>
+</div>
+<!-- Current master's students -->
+<div>
+<div class="student-section-title">
+<h3><span data-zh="">在校硕士生</span><span data-en="">Current Master's Students</span></h3>
+<span><span data-zh="">点击姓名展开</span><span data-en="">Expand a name for details</span></span>
+</div>
+<div class="student-grid">
+<div class="cohort-label"><span data-zh="">在校硕士</span><span data-en="">Current Master's Students</span></div>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">龚娜</span><span class="student-role"><span data-zh="">硕士生</span><span data-en="">Master's Student</span></span></span></summary>
+<div class="student-body"><div class="student-body-inner">
+<div class="student-block">
+<span class="student-label"><span data-zh="">论文</span><span data-en="">Publications</span></span>
+<p class="student-pub">Lu Y, <strong>Gong N</strong>, <strong>Zhang Y</strong>, et al. Exploring effects of the fixed punishment probability and Q-learning-based update on cooperation in spatial public goods games[J]. <em>Applied Mathematics and Computation</em>, 2027, 532: 130252.</p>
+<p class="student-pub"><strong>Gong N</strong>, <strong>Zhang Y</strong>, Lu Y, et al. Cooperation dynamics driven by inequality-averse reward in structured populations[J]. <em>Applied Mathematics and Computation</em>, 2026, 531: 130194.</p>
+</div>
+<div class="student-block">
+<span class="student-label"><span data-zh="">基金</span><span data-en="">Grant</span></span>
+<p class="student-item">云南省教育厅科技研究项目《基于大语言模型的气候风险博弈实验研究》（项目编号：2025Y0806）。</p>
+</div>
+</div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">凡荣</span><span class="student-role"><span data-zh="">硕士生</span><span data-en="">Master's Student</span></span></span></summary>
+<div class="student-body"><div class="student-body-inner">
+<div class="student-block">
+<span class="student-label"><span data-zh="">论文</span><span data-en="">Publications</span></span>
+<p class="student-pub">Lu Y, <strong>Fan R</strong>, <strong>Li L</strong>, et al. Higher-order suppression of intraspecific competition reshapes biodiversity in spatial rock–paper–scissors dynamics[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2026, 212: 118974.</p>
+<p class="student-pub"><strong>Fan R</strong>, Lu Y, <strong>Li L</strong>, et al. Nonlinear effects of higher-order interactions on pattern formation and species persistence in cyclic ecosystems[J]. <em>Europhysics Letters</em>, 2026, 155(1): 12001.</p>
+<p class="student-pub">Lu Y, <strong>Fan R</strong>, <strong>Zhang Y</strong>, et al. Higher-order processes shape diverse patterns in biodiversity[J]. <em>Physical Review E</em>, 2025, 112(6): 064319.</p>
+</div>
+<div class="student-block">
+<span class="student-label"><span data-zh="">基金</span><span data-en="">Grant</span></span>
+<p class="student-item">云南财经大学研究生创新基金项目《实验与田野融合视角下的大语言模型合作行为研究》（项目编号：2026YUFEYC139）。</p>
+</div>
+<div class="student-block">
+<span class="student-label"><span data-zh="">奖励</span><span data-en="">Awards</span></span>
+<p class="student-item">2024年中国研究生数学建模竞赛国家级三等奖；</p>
+<p class="student-item">2025年正大杯第十五届市场调查与分析大赛省级二等奖；</p>
+<p class="student-item">2025年全国大学生数学建模大赛省级二等奖；</p>
+<p class="student-item">2025年第八届全国应用统计专业学位研究生案例大赛国家级二等奖；</p>
+<p class="student-item">2026年正大杯第十六届市场调查与分析大赛省级一等奖。</p>
+</div>
+</div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">徐兵</span><span class="student-role"><span data-zh="">硕士生</span><span data-en="">Master's Student</span></span></span></summary>
+<div class="student-body"><div class="student-body-inner">
+<div class="student-block">
+<span class="student-label"><span data-zh="">论文</span><span data-en="">Publication</span></span>
+<p class="student-pub"><strong>Xu B</strong>, Lu Y, Yang J, et al. Coevolutionary vaccination dynamics driven by committed influencers on complex networks[J]. <em>Chaos: An Interdisciplinary Journal of Nonlinear Science</em>, 2026, 36(8).</p>
+</div>
+<div class="student-block">
+<span class="student-label"><span data-zh="">奖励</span><span data-en="">Awards</span></span>
+<p class="student-item">2025年第二届大学生数据要素素质大赛云南赛区三等奖；</p>
+<p class="student-item">2025年第八届全国应用统计专业学位研究生案例大赛省级三等奖；</p>
+<p class="student-item">2026年正大杯第十六届市场调查与分析大赛省级二等奖。</p>
+</div>
+</div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">杨西胜</span><span class="student-role"><span data-zh="">硕士生</span><span data-en="">Master's Student</span></span></span></summary>
+<div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh="">论文、基金与奖励信息待补充。</span><span data-en="">Publications, grants and awards to be added.</span></p></div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">陈思洁</span><span class="student-role"><span data-zh="">硕士生</span><span data-en="">Master's Student</span></span></span></summary>
+<div class="student-body"><div class="student-body-inner">
+<div class="student-block">
+<span class="student-label"><span data-zh="">基金</span><span data-en="">Grant</span></span>
+<p class="student-item">云南财经大学研究生创新基金项目《基于差异化触发机制的高阶网络双病毒传播建模与分析》（项目编号：2026YUFEYC131）。</p>
+</div>
+<div class="student-block">
+<span class="student-label"><span data-zh="">奖励</span><span data-en="">Awards</span></span>
+<p class="student-item">2024年华为杯第二十一届数学建模竞赛国家级三等奖；</p>
+<p class="student-item">2025年正大杯第十五届市场调查与分析大赛云南财经大学校级三等奖；</p>
+<p class="student-item">2025年第八届全国应用统计专业学位研究生案例大赛省级三等奖；</p>
+<p class="student-item">2025年第十一届统计建模大赛省级三等奖。</p>
+</div>
+</div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">陈宇昂</span><span class="student-role"><span data-zh="">硕士生</span><span data-en="">Master's Student</span></span></span></summary>
+<div class="student-body"><div class="student-body-inner">
+<div class="student-block">
+<span class="student-label"><span data-zh="">奖励</span><span data-en="">Awards</span></span>
+<p class="student-item">2025年正大杯第十五届市场调查与分析大赛省级三等奖；</p>
+<p class="student-item">2025年挑战杯大学生课外学术科技作品竞赛云南财经大学校级三等奖；</p>
+<p class="student-item">2025年工行杯全国大学生金融科技创新大赛省级三等奖；</p>
+<p class="student-item">2026年正大杯第十六届市场调查与分析大赛省级三等奖。</p>
+</div>
+</div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">刘崇睿</span><span class="student-role"><span data-zh="">硕士生</span><span data-en="">Master's Student</span></span></span></summary>
+<div class="student-body"><div class="student-body-inner">
+<div class="student-block">
+<span class="student-label"><span data-zh="">论文</span><span data-en="">Publication</span></span>
+<p class="student-pub"><strong>Liu C</strong>, Lu Y, <strong>Hou Y</strong>, et al. Higher-order interactions and consensus payoff accelerate consensus formation on mixed hypergraphs[J]. <em>Chaos, Solitons &amp; Fractals</em>, 2026, 211: 118798.</p>
+</div>
+<div class="student-block">
+<span class="student-label"><span data-zh="">基金</span><span data-en="">Grant</span></span>
+<p class="student-item">云南财经大学研究生创新基金项目《高阶交互下社会共识的演化动力学研究》（项目编号：2026YUFEYC133）。</p>
+</div>
+<div class="student-block">
+<span class="student-label"><span data-zh="">奖励</span><span data-en="">Award</span></span>
+<p class="student-item">2026年正大杯第十六届市场调查与分析大赛云南财经大学校级奖项。</p>
+</div>
+</div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">李凌泽</span><span class="student-role"><span data-zh="">硕士生</span><span data-en="">Master's Student</span></span></span></summary>
+<div class="student-body"><div class="student-body-inner">
+<div class="student-block">
+<span class="student-label"><span data-zh="">奖励</span><span data-en="">Awards</span></span>
+<p class="student-item">2024年中国研究生数学建模竞赛国家级三等奖；</p>
+<p class="student-item">2025年第八届全国应用统计专业学位研究生案例大赛国家级二等奖。</p>
+</div>
+</div></div>
+</details>
+<div class="cohort-label">25级硕士</div>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">李锦瑜</span><span class="student-role">25级硕士</span></span></summary>
+<div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh="">论文、基金与奖励信息待补充。</span><span data-en="">Publications, grants and awards to be added.</span></p></div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">许宇鹏</span><span class="student-role">25级硕士</span></span></summary>
+<div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh="">论文、基金与奖励信息待补充。</span><span data-en="">Publications, grants and awards to be added.</span></p></div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">胡兴巧</span><span class="student-role">25级硕士</span></span></summary>
+<div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh="">论文、基金与奖励信息待补充。</span><span data-en="">Publications, grants and awards to be added.</span></p></div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">蒋嘉仪</span><span class="student-role">25级硕士</span></span></summary>
+<div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh="">论文、基金与奖励信息待补充。</span><span data-en="">Publications, grants and awards to be added.</span></p></div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">李帅帅</span><span class="student-role">25级硕士</span></span></summary>
+<div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh="">论文、基金与奖励信息待补充。</span><span data-en="">Publications, grants and awards to be added.</span></p></div></div>
+</details>
+<div class="cohort-label">26级硕士</div>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">刘光强</span><span class="student-role">26级硕士</span></span></summary>
+<div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh="">论文、基金与奖励信息待补充。</span><span data-en="">Publications, grants and awards to be added.</span></p></div></div>
+</details>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">武艳</span><span class="student-role">26级硕士</span></span></summary>
+<div class="student-body"><div class="student-body-inner"><p class="student-item"><span data-zh="">论文、基金与奖励信息待补充。</span><span data-en="">Publications, grants and awards to be added.</span></p></div></div>
+</details>
+</div>
+</div>
+<!-- Undergraduate students -->
+<div>
+<div class="student-section-title">
+<h3><span data-zh="">本科生</span><span data-en="">Undergraduate Students</span></h3>
+<span><span data-zh="">点击姓名展开</span><span data-en="">Expand a name for details</span></span>
+</div>
+<div class="student-grid">
+<div class="cohort-label"><span data-zh="">24级统计</span><span data-en="">Statistics, Class of 2024</span></div>
+<details class="student-person">
+<summary><span class="student-summary-main"><span class="student-name">王怡敏</span><span class="student-role"><span data-zh="">24级统计</span><span data-en="">Undergraduate · Statistics</span></span></span></summary>
+<div class="student-body"><div class="student-body-inner">
+<div class="student-block">
+<span class="student-label"><span data-zh="">大创项目</span><span data-en="">Innovation Training Project</span></span>
+<p class="student-item"><strong>2026年批次</strong></p>
+<p class="student-item">项目名称：认知偏好异质性对合作行为的影响研究</p>
+<p class="student-item">项目编号（省级项目编号）：S202610689018</p>
+<p class="student-item">项目类型：创新训练项目</p>
+<p class="student-item">项目级别：省级</p>
+<p class="student-item">项目期限：两年期（2026-05 至 2028-05）</p>
+</div>
+<div class="student-block">
+<span class="student-label">SRTP <span data-zh="">项目</span><span data-en="">Project</span></span>
+<p class="student-item">项目名称：观点驱动的合作演化研究</p>
+<p class="student-item">项目期限：2025-12 至 2026-12</p>
+</div>
+</div></div>
+</details>
+</div>
+</div>
+</div>
+</div></details></div>
+</section>
+</main>
+<footer>
+<div class="wrap footer-inner">
+<span>© 2026 Yikang Lu</span>
+<span>Yunnan University of Finance and Economics · Kunming, China</span>
+</div>
+</footer>
+<script>
     const publications = [
       [2027,"Exploring effects of the fixed punishment probability and Q-learning-based update on cooperation in spatial public goods games","Y Lu, N Gong, Y Zhang, C Du, J Park","Applied Mathematics and Computation 532, 130252, 2027"],
       [2026,"Cooperation dynamics driven by inequality-averse reward in structured populations","N Gong, Y Zhang, Y Lu, S Li, L Shi","Applied Mathematics and Computation 531, 130194, 2026"],
